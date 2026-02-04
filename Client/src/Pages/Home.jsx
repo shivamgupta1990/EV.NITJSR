@@ -44,7 +44,8 @@ const Home = () => {
   useEffect(() => {
     const fetchEvents = async () => {
       try {
-        const res = await fetch(`${API_BASE_URL}/api/events`);
+        const res = await fetch(`
+          ${import.meta.env.VITE_BACKEND_URL}/api/events`);
 
         if (!res.ok) throw new Error("Failed to fetch events");
 

@@ -73,7 +73,7 @@ const Signup = () => {
     }
 
     try {
-      const response = await fetch("http://localhost:5000/api/auth/register", {
+      const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/auth/register`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -81,6 +81,7 @@ const Signup = () => {
         body: JSON.stringify({
           name: formData.name,
           email: formData.email,
+          role:'user',
           password: formData.password,
         }),
       });

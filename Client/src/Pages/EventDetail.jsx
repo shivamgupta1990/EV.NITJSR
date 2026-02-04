@@ -98,7 +98,7 @@ const EventDetail = () => {
 
     setProcessing(true);
     try {
-      const res = await fetch("https://ev-nitjsr-hro2.vercel.app/api/bookings", {
+      const res = await fetch(API_BASE_URL+"/api/bookings", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

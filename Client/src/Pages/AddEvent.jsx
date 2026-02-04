@@ -84,7 +84,7 @@ const AddEvent = () => {
     }
 
     try {
-      const response = await fetch("http://localhost:5000/api/events", {
+      const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/events`, {
         method: "POST",
         headers: {
           Authorization: `Bearer ${token}`,
