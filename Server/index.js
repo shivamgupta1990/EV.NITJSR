@@ -20,7 +20,7 @@ app.use(
     origin: [
       "http://localhost:3000",
       "http://localhost:5173",
-      "https://your-app.vercel.app" // Replace with your actual vercel link
+      "https://ev-nitjsr-pumk.vercel.app" // Replace with your actual vercel link
     ],
     credentials: true
   })
