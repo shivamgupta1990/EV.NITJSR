@@ -6,31 +6,32 @@ import authRoutes from "./routes/authRoutes.js";
 import eventRoutes from "./routes/eventRoutes.js";
 import bookingRoutes from "./routes/bookingRoutes.js";
 import path from "path";
-// import paymentRoutes from "./routes/paymentRoutes.js";
 
 dotenv.config();
 connectDB();
 
 const app = express();
 
-app.use(cors());
-app.use(express.json());
+const corsOptions = {
+  origin: ["http://localhost:5173", "http://localhost:3000"],
+  methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"],
+  credentials: true
+};
 
+app.use(cors(corsOptions));
+app.options("*", cors(corsOptions));
+
+app.use(express.json());
 app.use("/uploads", express.static(path.join(process.cwd(), "uploads")));
 
-// console.log("Stripe Key:", process.env.STRIPE_SECRET_KEY);
 app.use("/api/auth", authRoutes);
 app.use("/api/events", eventRoutes);
 app.use("/api/bookings", bookingRoutes);
-// app.use("/api/payment", paymentRoutes);
-
-
 
 app.get("/", (req, res) => {
   res.send("Event Booking API is running");
 });
-
-
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () =>
