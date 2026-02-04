@@ -14,8 +14,28 @@ connectDB();
 const app = express();
 
 /* ---------- Middleware ---------- */
+const allowedOrigins = [
+  "http://localhost:3000", // Local development
+  "http://localhost:5173", // Vite default
+  "https://your-app.vercel.app", // Replace with your actual Vercel domain
+  // Add more origins as needed
+];
+
 app.use(cors({
-  origin: "*", // later restrict this for production
+  origin: function (origin, callback) {
+    // Allow requests with no origin (like mobile apps or curl requests)
+    if (!origin) return callback(null, true);
+    // Allow file:// protocol for local development
+    if (origin && origin.startsWith('file://')) return callback(null, true);
+    // Allow localhost origins for development
+    if (origin && (origin.includes('localhost') || origin.includes('127.0.0.1'))) return callback(null, true);
+    if (allowedOrigins.indexOf(origin) !== -1) {
+      callback(null, true);
+    } else {
+      // For development, allow all origins
+      callback(null, true);
+    }
+  },
   methods: ["GET", "POST", "PUT", "DELETE"],
   credentials: true
 }));

@@ -2,6 +2,8 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Calendar, MapPin, DollarSign, Users, Upload, PlusCircle, ArrowLeft } from "lucide-react";
 
+const API_BASE_URL = import.meta.env.VITE_BACKEND_URL;
+
 // Professional static color palette
 const colors = {
   primary: "#6366F1",

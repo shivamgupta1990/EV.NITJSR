@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { User, Mail, Lock, CheckCircle, UserPlus, ArrowRight } from "lucide-react";
 
+const API_BASE_URL = import.meta.env.VITE_BACKEND_URL;
+
 // Professional static color palette
 const colors = {
   primary: "#6366F1",
@@ -71,22 +73,17 @@ const Signup = () => {
     }
 
     try {
-      const response = await fetch(
-  "https://ev-nitjsr.vercel.app/api/auth/register",
-  {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    credentials: "true", // 🔥 important for auth
-    body: JSON.stringify({
-      name: formData.name,
-      email: formData.email,
-      password: formData.password,
-    }),
-  }
-);
-
+      const response = await fetch("http://localhost:5000/api/auth/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          password: formData.password,
+        }),
+      });
 
       const data = await response.json();
 

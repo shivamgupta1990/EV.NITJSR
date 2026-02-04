@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Calendar, MapPin, DollarSign, CheckCircle, Ticket } from "lucide-react";
 
+const API_BASE_URL = import.meta.env.VITE_BACKEND_URL;
+
 // Professional static color palette
 const colors = {
   primary: "#6366F1",
@@ -46,7 +48,7 @@ const Events = () => {
         setLoading(true);
         
         // Fetch all events
-        const eventsRes = await fetch("http://localhost:5000/api/events");
+        const eventsRes = await fetch(`${API_BASE_URL}/api/events`);
         if (!eventsRes.ok) throw new Error("Failed to fetch events");
         const eventsData = await eventsRes.json();
         setEvents(Array.isArray(eventsData) ? eventsData : []);
@@ -55,7 +57,7 @@ const Events = () => {
         const token = localStorage.getItem("token");
         if (token) {
           try {
-            const bookingsRes = await fetch("http://localhost:5000/api/bookings/my", {
+            const bookingsRes = await fetch(`${API_BASE_URL}/api/bookings/my`, {
               headers: { Authorization: `Bearer ${token}` },
             });
             
@@ -189,7 +191,7 @@ const Events = () => {
                   {/* Event Image */}
                   <div className="relative h-48 overflow-hidden">
                     <img
-                      src={event.image ? `http://localhost:5000${event.image}` : getFallbackImage(event.title)}
+                      src={event.image ? `${API_BASE_URL}${event.image}` : getFallbackImage(event.title)}
                       alt={event.title}
                       className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                     />

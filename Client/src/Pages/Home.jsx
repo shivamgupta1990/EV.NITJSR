@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Calendar, MapPin, Clock, ArrowRight } from "lucide-react";
 
+const API_BASE_URL = import.meta.env.VITE_BACKEND_URL;
+
 // Professional static color palette
 const colors = {
   primary: "#6366F1",      // Indigo
@@ -42,7 +44,7 @@ const Home = () => {
   useEffect(() => {
     const fetchEvents = async () => {
       try {
-        const res = await fetch("http://localhost:5000/api/events");
+        const res = await fetch(`${API_BASE_URL}/api/events`);
 
         if (!res.ok) throw new Error("Failed to fetch events");
 
@@ -160,7 +162,7 @@ const Home = () => {
                   <img
                     src={
                       event.image
-                        ? `http://localhost:5000${event.image}`
+                        ? `${API_BASE_URL}${event.image}`
                         : getFallbackImage(event.title)
                     }
                     alt={event.title}
@@ -266,7 +268,7 @@ const Home = () => {
                       <img
                         src={
                           event.image
-                            ? `http://localhost:5000${event.image}`
+                            ? `${API_BASE_URL}${event.image}`
                             : getFallbackImage(event.title)
                         }
                         alt={event.title}

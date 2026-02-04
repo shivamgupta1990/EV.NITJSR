@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { Eye, EyeOff, Mail, Lock, LogIn } from "lucide-react";
 
+const API_BASE_URL = import.meta.env.VITE_BACKEND_URL;
+
 const Login = () => {
   const [formData, setFormData] = useState({
     email: "",

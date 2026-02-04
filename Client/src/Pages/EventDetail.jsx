@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { Calendar, MapPin, DollarSign, Users, ArrowLeft, CheckCircle, CreditCard, Shield } from "lucide-react";
 
+const API_BASE_URL = import.meta.env.VITE_BACKEND_URL;
+
 // Professional static color palette
 const colors = {
   primary: "#6366F1",
@@ -48,14 +50,14 @@ const EventDetail = () => {
   useEffect(() => {
     const fetchEventAndBooking = async () => {
       try {
-        const eventRes = await fetch(`http://localhost:5000/api/events/${id}`);
+        const eventRes = await fetch(`${API_BASE_URL}/api/events/${id}`);
         if (!eventRes.ok) throw new Error("Failed to fetch event");
         const eventData = await eventRes.json();
         setEvent(eventData);
 
         const token = localStorage.getItem("token");
         if (token) {
-          const bookingRes = await fetch("http://localhost:5000/api/bookings/my", {
+          const bookingRes = await fetch(`${API_BASE_URL}/api/bookings/my`, {
             headers: { Authorization: `Bearer ${token}` },
           });
 
@@ -96,7 +98,7 @@ const EventDetail = () => {
 
     setProcessing(true);
     try {
-      const res = await fetch("http://localhost:5000/api/bookings", {
+      const res = await fetch("https://ev-nitjsr-hro2.vercel.app/api/bookings", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -188,7 +190,7 @@ const EventDetail = () => {
         {/* Event Image Hero */}
         <div className="relative h-64 sm:h-80 md:h-96 rounded-2xl overflow-hidden mb-8">
           <img
-            src={event.image ? `http://localhost:5000${event.image}` : getFallbackImage(event.title)}
+            src={event.image ? `${API_BASE_URL}${event.image}` : getFallbackImage(event.title)}
             alt={event.title}
             className="w-full h-full object-cover"
           />
