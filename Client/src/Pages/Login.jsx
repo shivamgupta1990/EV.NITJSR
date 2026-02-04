@@ -46,7 +46,7 @@ const Login = () => {
 
     try {
       const response = await fetch(
-        "https://ev-nitjsr.vercel.app/api/auth/login",
+        "http://localhost:5000/api/auth/login",
         {
           method: "POST",
           headers: {
