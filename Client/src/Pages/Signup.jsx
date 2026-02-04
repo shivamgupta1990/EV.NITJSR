@@ -78,7 +78,7 @@ const Signup = () => {
     headers: {
       "Content-Type": "application/json",
     },
-    credentials: "include", // 🔥 important for auth
+    credentials: "true", // 🔥 important for auth
     body: JSON.stringify({
       name: formData.name,
       email: formData.email,
