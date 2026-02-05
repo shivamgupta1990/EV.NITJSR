@@ -30,7 +30,7 @@ export const RegisterUser = async (req, res) => {
       password: hashedPassword,
       role
     });
-    console.log("user in server->",user)
+    // console.log("user in server->",user)
 
     return res.status(201).json({
       _id: user._id,
@@ -39,7 +39,7 @@ export const RegisterUser = async (req, res) => {
       token: generateToken(user._id,role),
     });
   } catch (error) {
-    console.log("error in server ->",error)
+    // console.log("error in server ->",error)
     return res.status(500).json({ message: error.message });
   }
 };

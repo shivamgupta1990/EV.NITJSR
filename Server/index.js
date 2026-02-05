@@ -1,3 +1,5 @@
+import "./config/env.js";
+
 import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
@@ -20,7 +22,7 @@ app.use(
     origin: [
       "http://localhost:3000",
       "http://localhost:5173",
-      "https://ev-nitjsr-pumk.vercel.app" // Replace with your actual vercel link
+      // "https://ev-nitjsr-pumk.vercel.app" // Replace with your actual vercel link
     ],
     credentials: true
   })
@@ -30,7 +32,7 @@ app.use(
 app.use(express.json());
 
 /* ---------- Static Files ---------- */
-app.use("/uploads", express.static(path.join(process.cwd(), "uploads")));
+// app.use("/uploads", express.static(path.join(process.cwd(), "uploads")));
 
 /* ---------- Routes ---------- */
 app.use("/api/auth", authRoutes);

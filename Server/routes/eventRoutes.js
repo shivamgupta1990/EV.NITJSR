@@ -4,14 +4,18 @@ import { protect } from "../middleware/authMiddleware.js";
 import { adminOnly } from "../middleware/adminMiddleware.js";
 import upload from "../middleware/upload.js";
 
+
+
 const router = express.Router();
+
+// Admin only
+router.post("/", protect, adminOnly,upload.single("image"), createEvent);
 
 // Public/User
 router.get("/", getEvents);
 
 router.get("/:id", getEventById);
 
-// Admin only
-router.post("/", protect, adminOnly,upload.single("image"), createEvent);
+
 
 export default router;

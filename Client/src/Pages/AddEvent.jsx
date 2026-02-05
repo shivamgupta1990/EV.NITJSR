@@ -42,12 +42,14 @@ const AddEvent = () => {
 
     if (name === "image" && files && files[0]) {
       const file = files[0];
+      // console.log("file",file);
       setFormData({
         ...formData,
         [name]: file,
       });
       // Create preview URL
       setPreviewImage(URL.createObjectURL(file));
+      // console.log("fileURL->",previewImage);
     } else {
       setFormData({
         ...formData,
@@ -82,7 +84,7 @@ const AddEvent = () => {
         data.append(key, formData[key]);
       }
     }
-
+    
     try {
       const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/events`, {
         method: "POST",
@@ -91,9 +93,9 @@ const AddEvent = () => {
         },
         body: data,
       });
-
+      console.log('Response->',response);
       const result = await response.json();
-
+      console.log('REsut->',result);
       if (!response.ok) {
         setError(result.message || "Failed to add event");
         setLoading(false);
