@@ -313,7 +313,7 @@ const Signup = () => {
             <p style={{ color: colors.text }}>
               Already have an account?{" "}
               <a 
-                href="#" 
+                href="" 
                 className="font-medium hover:underline inline-flex items-center"
                 style={{ color: colors.primary }}
               >
