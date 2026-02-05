@@ -190,7 +190,7 @@ const EventDetail = () => {
         {/* Event Image Hero */}
         <div className="relative h-64 sm:h-80 md:h-96 rounded-2xl overflow-hidden mb-8">
           <img
-            src={event.image ? `${API_BASE_URL}${event.image}` : getFallbackImage(event.title)}
+            src={event.image ? `${API_BASE_URL}${event.image}` : `https://images.unsplash.com/photo-1517649763962-0c623066013b`}
             alt={event.title}
             className="w-full h-full object-cover"
           />

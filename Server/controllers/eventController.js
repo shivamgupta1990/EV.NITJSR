@@ -3,27 +3,25 @@ import Event from "../Models/event.js";
 
 export const createEvent = async (req, res) => {
   try {
-    console.log("BODY:");
-    // console.log("FILE:", req.file);
-    // console.log("USER:", req.user);
+    
 
     const event = await Event.create({
       title: req.body.title,
       description: req.body.description,
       date: req.body.date,
       location: req.body.location,
-      price: Number(req.body.price),               // 🔥 FIX
+      price: Number(req.body.price),
       availableSeats: Number(req.body.availableSeats || 0),
-      image: req.file ? req.file.path : null,
       createdBy: req.user._id,
     });
 
     res.status(201).json(event);
   } catch (error) {
-    console.error("CREATE EVENT ERROR:", error); // 🔥 MUST HAVE
+    console.error("CREATE EVENT ERROR ❌:", error);
     res.status(500).json({ message: error.message });
   }
 };
+
 
 
 
