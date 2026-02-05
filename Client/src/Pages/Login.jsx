@@ -239,7 +239,7 @@ const Login = () => {
                  style={{ borderColor: colors.border }}>
               <p className="text-sm" style={{ color: colors.text }}>
                 Don't have an account?{' '}
-                <a href="/register" className="font-medium hover:underline"
+                <a href="#" className="font-medium hover:underline"
                    style={{ color: colors.primary }}>
                   Sign up now
                 </a>
